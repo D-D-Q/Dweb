@@ -1,0 +1,29 @@
+静态资源文件使用nginx
+
+mvc多视图，没有用到
+
+freemarker视图中引用资源文件(js、css)的的路径使用request.getContextPath()+“/*.css”绝对路径
+
+@ResponseBody方式返回字符串
+
+主题
+
+国际化
+
+页面中link和javascript的引用路径，相对路径是相对当前url的路径，不稳定。使用绝对路径
+
+
+mysql编码
+character-set-server/default-character-set：服务器字符集，默认情况下所采用的。
+character-set-database：数据库字符集。
+character-set-table：数据库表字符集。
+优先级依次增加。所以一般情况下只需要设置character-set-server，而在创建数据库和表时不特别指定字符集，这样统一采用character-set-server字符集。
+character-set-client：客户端的字符集。客户端默认字符集。当客户端向服务器发送请求时，请求以该字符集进行编码。
+character-set-results：结果字符集。服务器向客户端返回结果或者信息时，结果以该字符集进行编码。
+在客户端，如果没有定义character-set-results，则采用character-set-client字符集作为默认的字符集。所以只需要设置character-set-client字符集。
+
+只要配置这两个就行了
+[mysqld]
+character-set-server = utf8
+[mysql]
+default-character-set = utf8

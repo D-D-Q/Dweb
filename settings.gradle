@@ -7,5 +7,4 @@ rootProject.name = 'Dweb'
 
 rootProject.children.each {project ->
     project.projectDir = new File(settingsDir, "subprojects/${project.name}")
-    project.buildFileName = "${project.name}.gradle"
 }

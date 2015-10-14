@@ -1,0 +1,11 @@
+
+include "core"// 核心
+include "extend" // 功能扩展
+include "web" // web项目
+
+rootProject.name = 'Dweb'
+
+rootProject.children.each {project ->
+    project.projectDir = new File(settingsDir, "subprojects/${project.name}")
+    project.buildFileName = "${project.name}.gradle"
+}

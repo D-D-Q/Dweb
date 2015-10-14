@@ -1,8 +1,11 @@
 .gradle/
 
-.classpath
-.project
-.settings/
+*.classpath
+*.project
+*.settings/
 
 build/
 bin/
+
+/subprojects/*/build
+/subprojects/*/bin

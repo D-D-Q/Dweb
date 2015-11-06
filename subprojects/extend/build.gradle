@@ -1,8 +1,0 @@
-dependencies {
-	
-	/** servlet3.0的api */
-  	compile 'javax.servlet:javax.servlet-api:3.1.0'
-  	
-	/** spring web */
-  	compile "org.springframework:spring-webmvc:$springVersion"
-}

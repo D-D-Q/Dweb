@@ -17,6 +17,8 @@ apply plugin: 'war'
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
+//webAppDirName = 'webapp'
+
 repositories {
 	mavenCentral()
 }
@@ -59,6 +61,8 @@ task createJavaProjectDirs{
 	sourceSets*.resources.srcDirs*.each { it.mkdirs()}
 }
 
+//套路一----------------------------------------------------------------------------------------------------------------
+
 /** 解压war文件，tomcat部署此文件夹路径，不使用war。原因是因为不能刷新war中的页面文件，如果刷新war，tomcat就会重新部署，影响调试页面布局时间 */
 task buildWebAppDir(type: Copy) { 
 	 from zipTree('build/libs/web.war')
@@ -76,3 +80,18 @@ task buildView(type: Copy) {
 	 into 'build/libs/web/'
 	 exclude { details -> details.file.name.endsWith('.xml')}
 }
+
+
+//套路二----------------------------------------------------------------------------------------------------------------
+
+/** 复制jar文件到lib */
+task copyJars(type: Copy) {
+	from configurations.runtime
+	into 'src/main/webapp/WEB-INF/lib'
+}
+task deleteJars {
+	if(file("src/main/webapp/WEB-INF/lib/").exists()){
+		file("src/main/webapp/WEB-INF/lib/").deleteDir();
+	}
+}
+copyJars.dependsOn deleteJars
